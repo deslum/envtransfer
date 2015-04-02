@@ -12,7 +12,7 @@ setup(name='envtransfer',
       description='Transfer your environment between computers using Yandex Disk.',
       author='Yuri Bukatkin',
       author_email='iturs@yandex.ru',
-      url='http://envtransfer.deslum.com/',
+      url='https://pypi.python.org/pypi/envtransfer/0.11a1',
       packages=find_packages(),
       entry_points={
         'console_scripts':
