@@ -9,7 +9,7 @@ def read(fname):
 
 setup(name='envtransfer',
       version=envtransfer.__version__,
-      description='Transfer your environment between computers.',
+      description='Transfer your environment between computers using Yandex Disk.',
       author='Yuri Bukatkin',
       author_email='iturs@yandex.ru',
       url='http://envtransfer.deslum.com/',
