@@ -32,8 +32,7 @@ class SendData(object):
 		url = urllib2.urlopen(request).geturl()
 		webbrowser.open(url)
 		code = raw_input('Enter your token:')
-		self.TOKEN = self.post(code).read().split('"')[7]
-		self.save_token(self.TOKEN)
+		self.save_token(self.post(code).read().split('"')[7])
 
 
 	def save_token(self, token):
