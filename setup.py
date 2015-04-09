@@ -1,8 +1,9 @@
-from distutils.core import setup
 from setuptools import setup, find_packages
 import envtransfer
+import os
 
-def read(fname):
+
+def read():
     return open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
 
@@ -14,8 +15,8 @@ setup(name='envtransfer',
       url='https://pypi.python.org/pypi/envtransfer/0.11',
       packages=find_packages(),
       entry_points={
-        'console_scripts':
-            ['envtransfer = envtransfer.core:start']
-        }
-     )
+          'console_scripts':
+              ['envtransfer = envtransfer.core:start']
+      }
+      )
 
