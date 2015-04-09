@@ -2,18 +2,15 @@
 EnvTransfer
 
 ##Description
-===========
 
 Transfer your environment between computers using Yandex disk.
 
 ##Author
-======
 
 * Author: `Yuri Bukatkin`
 
 
 ##Installation
-============
 
 ``` 
 1. Create a Python virtual environment and activate it
@@ -27,7 +24,6 @@ Transfer your environment between computers using Yandex disk.
 ``` 
 
 ##Using
-=====
 
   Authorization
 
