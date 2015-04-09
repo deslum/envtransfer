@@ -15,7 +15,7 @@ EnvTransfer - transfer your environment between computers using Yandex disk.
 
 2. Install package
 
-    $ pip install envtransfer
+    $ pip install https://github.com/deslum/EnvTransfer/archive/master.zip
 ``` 
 
 ##Using
@@ -23,17 +23,17 @@ EnvTransfer - transfer your environment between computers using Yandex disk.
   Authorization
 
 ``` 
-    $ envtransfer auth
+$ envtransfer auth
 ``` 
 
   Upload environment
 
 ``` 
-    $ envtransfer upload
+$ envtransfer upload
 ``` 
 
   Download environment
 
 ``` 
-    $ envtransfer download
+$ envtransfer download
 ``` 
