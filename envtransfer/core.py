@@ -17,7 +17,6 @@ def save_token(token):
     settings.TOKEN = token
     with open(settings.token_file, 'wb') as token_file:
         token_file.write(token)
-    token_file.close()
 
 
 def post(code):
@@ -38,9 +37,8 @@ def get(url):
 class SendData(object):
     def __init__(self):
         if os.path.isfile(settings.token_file):
-            token_file = open(settings.token_file, 'rb')
-            settings.TOKEN = token_file.read(32)
-            token_file.close()
+            with open(settings.token_file, 'rb') as token_file:
+                settings.TOKEN = token_file.read(32)
 
     @function_exception
     def auth(self):
@@ -56,9 +54,8 @@ class SendData(object):
     def upload_file(self, name):
         string = get("".join(
             ['https://cloud-api.yandex.net/v1/disk/resources/upload?path=', name, '&overwrite=true&fields=href']))
-        read_file = open(name, 'rb')
-        data = read_file.read()
-        read_file.close()
+        with open(name, 'rb') as read_file:
+            data = read_file.read()
         opener = urllib2.build_opener(urllib2.HTTPHandler)
         url = loads(string)['href'].encode('ascii')
         request = urllib2.Request(url, data=data)
@@ -73,9 +70,8 @@ class SendData(object):
         url = loads(string)['href']
         response = urllib2.urlopen(url)
         data = response.read()
-        save_file = open(name, 'wb')
-        save_file.write(data)
-        save_file.close()
+        with open(name, 'wb') as save_file:
+            save_file.write(data)
 
     @function_exception
     def get_archive(self, name, path):
@@ -84,16 +80,14 @@ class SendData(object):
                 for file_name in files:
                     if not file_name in name:
                         archive.write(os.path.join(root, file_name))
-        archive.close()
 
     @function_exception
     def extract_archive(self, name):
-        file_handle = open(name, 'rb')
-        zipfile = ZipFile(file_handle)
+        with open(name, 'rb') as file_handle:
+            zipfile = ZipFile(file_handle)
         for name in zipfile.namelist():
             out_path = os.getcwd()
             zipfile.extract(name, out_path)
-        file_handle.close()
         zipfile.close()
 
 
