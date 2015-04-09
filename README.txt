@@ -8,7 +8,7 @@ Transfer your environment between computers using Yandex disk.
 Author
 ======
 
-* Author: `Daniel Greenfeld`_
+* Author: `Yuri Bukatkin`
 
 
 Installation
