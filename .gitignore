@@ -48,7 +48,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
