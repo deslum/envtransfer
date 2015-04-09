@@ -29,7 +29,7 @@ Installation
 Using
 =====
 
- ###Authorization
+  Authorization
 
 ``` 
     $ envtransfer auth
