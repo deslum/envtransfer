@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7dea2332-6950-45f4-912c-e54d731b3246" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/envtransfer/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/envtransfer/core.py" afterPath="$PROJECT_DIR$/envtransfer/core.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/envtransfer/exception.py" afterPath="$PROJECT_DIR$/envtransfer/exception.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/envtransfer/help.py" afterPath="$PROJECT_DIR$/envtransfer/help.py" />
     </list>
     <ignored path="envtransfer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,14 +27,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24827586" vertical-offset="0" max-vertical-offset="725">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
               <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="help.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/envtransfer/help.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="core.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/envtransfer/core.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1815">
-              <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.6068966" vertical-offset="1090" max-vertical-offset="1815">
+              <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
               <folding>
                 <element signature="e#24#51#0" expanded="true" />
               </folding>
@@ -113,8 +121,9 @@
       <list>
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/envtransfer/settings.py" />
-        <option value="$PROJECT_DIR$/envtransfer/core.py" />
         <option value="$PROJECT_DIR$/envtransfer/exception.py" />
+        <option value="$PROJECT_DIR$/envtransfer/help.py" />
+        <option value="$PROJECT_DIR$/envtransfer/core.py" />
       </list>
     </option>
   </component>
@@ -276,12 +285,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/envtransfer/core.py">
+    <entry file="file://$PROJECT_DIR$/envtransfer/help.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1815">
-          <caret line="96" column="23" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
           <folding>
-            <element signature="e#24#51#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -294,12 +311,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
+    <entry file="file://$PROJECT_DIR$/envtransfer/core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24827586" vertical-offset="0" max-vertical-offset="725">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.6068966" vertical-offset="1090" max-vertical-offset="1815">
+          <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#24#51#0" expanded="true" />
           </folding>
         </state>
       </provider>

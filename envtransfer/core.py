@@ -97,7 +97,7 @@ class SendData(object):
         zipfile.close()
 
 
-if __name__ == '__main__':
+def start():
     if len(sys.argv) > 1 and sys.argv[1] in arguments:
         data = SendData()
         command = sys.argv[1]
