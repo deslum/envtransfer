@@ -27,3 +27,14 @@ EnvTransfer - transfer your environment between computers using Yandex disk.
     $ envtransfer auth
 ``` 
 
+  Upload environment
+
+``` 
+    $ envtransfer upload
+``` 
+
+  Download environment
+
+``` 
+    $ envtransfer download
+``` 
