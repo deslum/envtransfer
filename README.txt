@@ -23,4 +23,7 @@ Installation
 
     $ pip install envtransfer
 
-4. 
+4. Authorization
+
+    $ envtransfer auth
+    
