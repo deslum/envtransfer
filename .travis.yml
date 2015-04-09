@@ -3,5 +3,6 @@ python:
   - "2.7"
   
 script:
-  ./virtualenv/bin/python2.7 setup.py install
+  python setup.py install
   envtransfer
+  
