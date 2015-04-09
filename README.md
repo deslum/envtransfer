@@ -1,9 +1,5 @@
 
-EnvTransfer
-
-##Description
-
-Transfer your environment between computers using Yandex disk.
+EnvTransfer - transfer your environment between computers using Yandex disk.
 
 ##Author
 
