@@ -19,11 +19,11 @@ Installation
     $ virtualenv venv
     $ source venv/bin/activate
 
-3. Install package
+2. Install package
 
     $ pip install envtransfer
 
-4. Authorization
+3. Authorization
 
     $ envtransfer auth
     
