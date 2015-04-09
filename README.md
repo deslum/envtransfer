@@ -15,7 +15,7 @@
 
 2. Install package
 
-    $ pip install https://github.com/deslum/EnvTransfer/archive/master.zip
+    $ pip install https://github.com/deslum/envtransfer/archive/master.zip
 ``` 
 
 ##Using
