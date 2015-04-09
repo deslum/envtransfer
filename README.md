@@ -1,18 +1,18 @@
 
 EnvTransfer
 
-Description
+##Description
 ===========
 
 Transfer your environment between computers using Yandex disk.
 
-Author
+##Author
 ======
 
 * Author: `Yuri Bukatkin`
 
 
-Installation
+##Installation
 ============
 
 ``` 
@@ -26,7 +26,7 @@ Installation
     $ pip install envtransfer
 ``` 
 
-Using
+##Using
 =====
 
   Authorization
