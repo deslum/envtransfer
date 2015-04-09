@@ -20,7 +20,7 @@
 
 ##Using
 
-  Authorization
+  Get token
 
 ``` 
 $ envtransfer auth
