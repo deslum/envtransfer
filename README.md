@@ -16,8 +16,9 @@ Installation
 
 1. Create a Python virtual environment and activate it
 
-    $ virtualenv venv
+```    $ virtualenv venv
     $ source venv/bin/activate
+```
 
 2. Install package
 
