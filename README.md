@@ -24,8 +24,14 @@ Installation
 2. Install package
 
     $ pip install envtransfer
+``` 
 
-3. Authorization
+Using
+=====
 
+##Authorization
+
+``` 
     $ envtransfer auth
 ``` 
+
