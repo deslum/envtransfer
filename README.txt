@@ -11,8 +11,8 @@ Author
 * Author: `Yuri Bukatkin`
 
 
-Installation
-============
+Install
+=======
 
 1. Create a Python virtual environment and activate it
 
