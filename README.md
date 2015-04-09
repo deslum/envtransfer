@@ -1,6 +1,8 @@
 
 EnvTransfer - transfer your environment between computers using Yandex disk.
 
+[![Build Status](https://travis-ci.org/deslum/EnvTransfer.svg)](https://travis-ci.org/deslum/EnvTransfer)
+
 ##Author
 
 * Author: `Yuri Bukatkin`
