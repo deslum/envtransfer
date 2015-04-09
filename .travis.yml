@@ -7,4 +7,6 @@ python:
 script:
   - python setup.py install
   - envtransfer
-  
+ 
+after_success:
+  - coveralls
