@@ -16,26 +16,25 @@ class SendData(object):
 
 	ID = '10b419971c1142378516377c4b693bf9'
 	ID_PASS = 'a0f40ea4db46466e87578c87e6aa77f4'
-	TOKEN =''
+	TOKEN = None
 
 	def __init__(self):
 		if os.path.isfile('mytoken.dat'):
 			token_file = open('mytoken.dat','rb')
 			self.TOKEN = token_file.read(32)
 			token_file.close()
-		else:
-			self.auth()
 
 	@excpt
 	def auth(self):
 		request = urllib2.Request("".join(['https://oauth.yandex.ru/authorize?response_type=code&client_id=',self.ID,'&state=EnvTransfer']))
 		url = urllib2.urlopen(request).geturl()
 		webbrowser.open(url)
-		code = raw_input('Enter your token:')
+		code = raw_input('Enter your code:')
 		self.save_token(self.post(code).read().split('"')[7])
 
 
 	def save_token(self, token):
+		self.TOKEN = token
 		with open('mytoken.dat','wb') as token_file:
 			token_file.write(token)
 		token_file.close()
@@ -89,29 +88,25 @@ class SendData(object):
 
 	@excpt
 	def unRar(self,name):
-		fh = open(name, 'rb')
-		z = ZipFile(fh)
-		for name in z.namelist():
+		filehandle = open(name, 'rb')
+		zipfile = ZipFile(filehandle)
+		for name in zipfile.namelist():
 		    outpath = os.getcwd()
-		    z.extract(name, outpath)
-		fh.close()
-		z.close()
+		    zipfile.extract(name, outpath)
+		filehandle.close()
+		zipfile.close()
 
-	def reEnter(self):
-		token = raw_input('Refresh your token? (Y/n):')
-		if token.lower() in 'y':
-			self.auth()
 
 def start():
 	if len(sys.argv)>1 and sys.argv[1] in argum:
 		data = SendData()
 		command = sys.argv[1]
 		if command in 'auth':
-			data.reEnter()
+			data.auth()
 		elif command in 'upload':
-			abspath = os.getcwd().split('/')[-1].lower()
+			abspath = os.getcwd().split('/')[-1].lower()	
 			file_name = "".join([abspath,'.zip'])
-			data.getArchive(file_name, '../'+abspath)
+			data.getArchive(file_name, '.')
 			data.uploadFile(file_name)
 		elif command in 'download':
 			file_name = raw_input('Enter your envirenment name (example: myenv.zip): ').lower()

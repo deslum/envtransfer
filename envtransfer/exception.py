@@ -20,4 +20,6 @@ def excpt(func):
 			print "Error connection"
 		except IOError:
 			print "File error"
+		except TypeError:
+			print "Token not found. Please generate token 'envtransfer auth'"
 	return new_func
