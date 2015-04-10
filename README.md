@@ -1,7 +1,7 @@
 
 ###EnvTransfer - transfer your environment between computers using Yandex disk.
 
-[![Build Status](https://travis-ci.org/deslum/EnvTransfer.svg)](https://travis-ci.org/deslum/envtransfer)
+[![Build Status](https://travis-ci.org/deslum/envtransfer.svg)](https://travis-ci.org/deslum/envtransfer)
 [![Downloads](https://pypip.in/d/EnvTransfer/badge.svg)](https://pypi.python.org/pypi/envtransfer)
 
 
