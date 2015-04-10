@@ -107,7 +107,7 @@ def start():
             get_archive(file_name, '.')
             upload_file(file_name)
         elif command in 'download':
-            file_name = raw_input('Enter your envirenment name (example: myenv.zip): ').lower()
+            file_name = raw_input('Enter your environment name (example: myenv.zip): ').lower()
             download_file(file_name)
             extract_archive(file_name)
     else:
