@@ -89,10 +89,10 @@ def get_archive(name, path):
 def extract_archive(name):
     with open(name, 'rb') as file_handle:
         zipfile = ZipFile(file_handle)
-    for name in zipfile.namelist():
-        out_path = os.getcwd()
-        zipfile.extract(name, out_path)
-    zipfile.close()
+        for name in zipfile.namelist():
+            out_path = os.getcwd()
+            zipfile.extract(name, out_path)
+        zipfile.close()
 
 
 def start():
