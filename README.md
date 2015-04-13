@@ -16,6 +16,11 @@
 2. Install package
 
     $ pip install https://github.com/deslum/envtransfer/archive/master.zip
+
+or
+
+    $ pip install envtransfer
+
 ``` 
 
 ##Using
