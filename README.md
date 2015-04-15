@@ -4,6 +4,11 @@
 [![Build Status](https://travis-ci.org/deslum/envtransfer.svg)](https://travis-ci.org/deslum/envtransfer)
 [![Downloads](https://pypip.in/d/envtransfer/badge.svg)](https://pypi.python.org/pypi/envtransfer)
 
+Requirements
+============
+
+* Python 2.7
+* Works on Linux, Windows, Mac OSX, BSD
 
 ##Installation
 
