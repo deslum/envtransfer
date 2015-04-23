@@ -30,7 +30,7 @@ def save_token(token):
 
 
 def post(code):
-    data = 'grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}').format(code,settings.ID, settings.ID_PASS)
+    data = 'grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}'.format(code,settings.ID, settings.ID_PASS)
     data_len = len(data)
     request = urllib2.Request('http://oauth.yandex.ru/token', headers={"Host": "oauth.yandex.ru",
                                                                        "Content-type": "application/x-www-form-urlencoded",
