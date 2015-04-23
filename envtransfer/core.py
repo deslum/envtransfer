@@ -83,6 +83,7 @@ def download_file(name):
 
 @function_exception
 def get_archive(name, path):
+    set_requerements()
     with ZipFile(name, 'w') as archive:
         for root, dirs, files in os.walk(path):
             for file_name in files:
@@ -98,6 +99,7 @@ def extract_archive(name):
             out_path = os.getcwd()
             zipfile.extract(name, out_path)
         zipfile.close()
+    get_requerements()
 
 
 def start():
@@ -108,7 +110,7 @@ def start():
             auth()
         elif command == 'upload':
             abspath = os.getcwd().split('/')[-1].lower()
-            file_name = "".join([abspath, '.zip'])
+            file_name = '{0}.zip'.format(abspath)
             get_archive(file_name, '.')
             upload_file(file_name)
         elif command == 'download':
