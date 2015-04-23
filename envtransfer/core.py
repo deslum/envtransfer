@@ -20,8 +20,7 @@ def save_token(token):
 
 
 def post(code):
-    data = "".join(
-        ['grant_type=authorization_code&code=', code, '&client_id=', settings.ID, '&client_secret=', settings.ID_PASS])
+    data = 'grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}'.format(code, settings.ID, settings.ID_PASS)
     data_len = len(data)
     request = urllib2.Request('http://oauth.yandex.ru/token', headers={"Host": "oauth.yandex.ru",
                                                                        "Content-type": "application/x-www-form-urlencoded",
@@ -42,9 +41,7 @@ def find_file():
 
 @function_exception
 def auth():
-    request = urllib2.Request(
-        "".join(
-            ['https://oauth.yandex.ru/authorize?response_type=code&client_id=', settings.ID, '&state=EnvTransfer']))
+    request = urllib2.Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={0}&state=EnvTransfer'.format(settings.ID))
     url = urllib2.urlopen(request).geturl()
     webbrowser.open(url)
     code = raw_input('Enter your code:')
@@ -53,8 +50,7 @@ def auth():
 
 @function_exception
 def upload_file(name):
-    string = get("".join(
-        ['https://cloud-api.yandex.net/v1/disk/resources/upload?path=', name, '&overwrite=true&fields=href']))
+    string = get('https://cloud-api.yandex.net/v1/disk/resources/upload?path={0}&overwrite=true&fields=href'.format(name))
     with open(name, 'rb') as read_file:
         data = read_file.read()
     opener = urllib2.build_opener(urllib2.HTTPHandler)
@@ -67,8 +63,7 @@ def upload_file(name):
 
 @function_exception
 def download_file(name):
-    string = get(
-        "".join(['https://cloud-api.yandex.net/v1/disk/resources/download?path=', name, '&fields=href']))
+    string = get('https://cloud-api.yandex.net/v1/disk/resources/download?path={0}&fields=href'.format(name))
     url = loads(string)['href']
     response = urllib2.urlopen(url)
     data = response.read()
@@ -99,14 +94,14 @@ def start():
     if len(sys.argv) > 1 and sys.argv[1] in arguments:
         find_file()
         command = sys.argv[1]
-        if command in 'auth':
+        if command == 'auth':
             auth()
-        elif command in 'upload':
+        elif command == 'upload':
             abspath = os.getcwd().split('/')[-1].lower()
-            file_name = "".join([abspath, '.zip'])
+            file_name = '{0}.zip'.format(abspath)
             get_archive(file_name, '.')
             upload_file(file_name)
-        elif command in 'download':
+        elif command == 'download':
             file_name = raw_input('Enter your environment name (example: myenv.zip): ').lower()
             download_file(file_name)
             extract_archive(file_name)
