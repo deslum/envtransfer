@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from zipfile import ZipFile
 from exception import function_exception
+from subprocess import call
 from json import loads
 import webbrowser
 import settings
@@ -13,6 +14,15 @@ import os
 arguments = {'auth', 'upload', 'download'}
 
 
+
+def get_requerements():
+    call('pip install -r ./requirements.txt',shell=False)
+
+
+def set_requerements():
+    call('pip freeze>requirements.txt',shell=False)
+
+
 def save_token(token):
     settings.TOKEN = token
     with open(settings.token_file, 'wb') as token_file:
@@ -20,7 +30,7 @@ def save_token(token):
 
 
 def post(code):
-    data = 'grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}'.format(code, settings.ID, settings.ID_PASS)
+    data = 'grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}', settings.ID_PASS]).format(code,settings.ID, settings.ID_PASS)
     data_len = len(data)
     request = urllib2.Request('http://oauth.yandex.ru/token', headers={"Host": "oauth.yandex.ru",
                                                                        "Content-type": "application/x-www-form-urlencoded",
@@ -98,7 +108,7 @@ def start():
             auth()
         elif command == 'upload':
             abspath = os.getcwd().split('/')[-1].lower()
-            file_name = '{0}.zip'.format(abspath)
+            file_name = "".join([abspath, '.zip'])
             get_archive(file_name, '.')
             upload_file(file_name)
         elif command == 'download':
