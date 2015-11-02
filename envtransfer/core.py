@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from urllib2 import Request, urlopen, build_opener, HTTPHandler
 from exception import function_exception
 from webbrowser import open as wbopen
 from settings import config
 from zipfile import ZipFile
 from json import loads
-from urllib2 import Request, urlopen, build_opener, HTTPHandler
-import help
+from help import show
 import sys
 import os
 
@@ -14,7 +14,7 @@ arguments = {'auth', 'upload', 'download'}
 
 def save_config():
     with open('settings.py','w') as f:
-        f.write(config)
+        f.write('config={}'.format(str(config)))
 
 
 def get(url):
@@ -25,17 +25,18 @@ def get(url):
 
 
 def auth():
-    request = urllib2.Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={}&state=EnvTransfer'.format(config['ID'])) 
-    url = urllib2.urlopen(request).geturl()
+    request = Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={}&state=EnvTransfer'.format(config['ID'])) 
+    url = urlopen(request).geturl()
     wbopen(url)
     code = raw_input('Enter your code:')
     if code:
         data = 'grant_type=authorization_code&code={}&client_id={}&client_secret={}'.format(code, config['ID'], config['ID_PASS'])
-        request = urllib2.Request('https://oauth.yandex.ru/token', headers = {"Host": "oauth.yandex.ru",
+        request = Request('https://oauth.yandex.ru/token', headers = {"Host": "oauth.yandex.ru",
                                                 "Content-type": "application/x-www-form-urlencoded", "Content-Length": len(data)})
-        response = urllib2.urlopen(request, data)
+        response = urlopen(request, data)
         config['TOKEN'] = response.read().split('"')[7]
-        save_config()
+        if config['TOKEN']:
+            save_config()
 
 
 def upload_file(name):
@@ -87,7 +88,7 @@ def start():
             auth()
         elif command in 'upload':
             abspath = os.getcwd().split('/')[-1].lower()
-            file_name = "".join([abspath, '.zip'])
+            file_name = '{}.zip'.format(abspath)
             get_archive(file_name, '.')
             upload_file(file_name)
         elif command in 'download':
