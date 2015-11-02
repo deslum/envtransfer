@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from zipfile import ZipFile
 from exception import function_exception
+from webbrowser import open as wbopen
+from settings import config
+from zipfile import ZipFile
 from json import loads
-import webbrowser
-import settings
-import urllib2
+from urllib2 import Request, urlopen, build_opener, HTTPHandler
 import help
 import sys
 import os
@@ -12,71 +12,55 @@ import os
 
 arguments = {'auth', 'upload', 'download'}
 
-
-def save_token(token):
-    settings.TOKEN = token
-    with open(settings.token_file, 'wb') as token_file:
-        token_file.write(token)
-
-
-def post(code):
-    data = "".join(
-        ['grant_type=authorization_code&code=', code, '&client_id=', settings.ID, '&client_secret=', settings.ID_PASS])
-    data_len = len(data)
-    request = urllib2.Request('http://oauth.yandex.ru/token', headers={"Host": "oauth.yandex.ru",
-                                                                       "Content-type": "application/x-www-form-urlencoded",
-                                                                       "Content-Length": data_len})
-    return urllib2.urlopen(request, data=data)
+def save_config():
+    with open('settings.py','w') as f:
+        f.write(config)
 
 
 def get(url):
-    request = urllib2.Request(url, headers={"Authorization": " ".join(['OAuth', settings.TOKEN])})
-    return urllib2.urlopen(request).read()
+    header = headers={"Authorization": "OAuth {}".format(config['TOKEN'])}
+    request = Request(url, headers = header)
+    response = urlopen(request).read()
+    return response
 
 
-def find_file():
-    if os.path.isfile(settings.token_file):
-        with open(settings.token_file, 'rb') as token_file:
-            settings.TOKEN = token_file.read(32)
-
-
-@function_exception
 def auth():
-    request = urllib2.Request(
-        "".join(
-            ['https://oauth.yandex.ru/authorize?response_type=code&client_id=', settings.ID, '&state=EnvTransfer']))
+    request = urllib2.Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={}&state=EnvTransfer'.format(config['ID'])) 
     url = urllib2.urlopen(request).geturl()
-    webbrowser.open(url)
+    wbopen(url)
     code = raw_input('Enter your code:')
-    save_token(post(code).read().split('"')[7])
+    if code:
+        data = 'grant_type=authorization_code&code={}&client_id={}&client_secret={}'.format(code, config['ID'], config['ID_PASS'])
+        request = urllib2.Request('https://oauth.yandex.ru/token', headers = {"Host": "oauth.yandex.ru",
+                                                "Content-type": "application/x-www-form-urlencoded", "Content-Length": len(data)})
+        response = urllib2.urlopen(request, data)
+        config['TOKEN'] = response.read().split('"')[7]
+        save_config()
 
 
-@function_exception
 def upload_file(name):
-    string = get("".join(
-        ['https://cloud-api.yandex.net/v1/disk/resources/upload?path=', name, '&overwrite=true&fields=href']))
+    request = 'https://cloud-api.yandex.net/v1/disk/resources/upload?path={}&overwrite=true&fields=href'.format(name)
+    string = get(request)
     with open(name, 'rb') as read_file:
         data = read_file.read()
-    opener = urllib2.build_opener(urllib2.HTTPHandler)
+    opener = build_opener(HTTPHandler)
     url = loads(string)['href'].encode('ascii')
-    request = urllib2.Request(url, data=data)
+    request = Request(url, data=data)
     request.add_header('Content-Type', 'application/binary')
     request.get_method = lambda: 'PUT'
     opener.open(request)
 
 
-@function_exception
 def download_file(name):
-    string = get(
-        "".join(['https://cloud-api.yandex.net/v1/disk/resources/download?path=', name, '&fields=href']))
+    request = 'https://cloud-api.yandex.net/v1/disk/resources/download?path={}&fields=href'.format(name)
+    string = get(request)
     url = loads(string)['href']
-    response = urllib2.urlopen(url)
+    response = urlopen(url)
     data = response.read()
     with open(name, 'wb') as save_file:
         save_file.write(data)
 
 
-@function_exception
 def get_archive(name, path):
     with ZipFile(name, 'w') as archive:
         for root, dirs, files in os.walk(path):
@@ -85,7 +69,7 @@ def get_archive(name, path):
                     archive.write(os.path.join(root, file_name))
 
 
-@function_exception
+
 def extract_archive(name):
     with open(name, 'rb') as file_handle:
         zipfile = ZipFile(file_handle)
