@@ -63,15 +63,6 @@ def download_file(name):
     with open(name, 'wb') as save_file:
         save_file.write(data)
 
-
-def get_archive(name, path):
-    with ZipFile(name, 'w') as archive:
-        for root, dirs, files in os.walk(path):
-            for file_name in files:
-                if not file_name in name:
-                    archive.write(os.path.join(root, file_name))
-
-
 def decrypt_file(key, in_filename, out_filename=None, chunksize=32*1024):
     if not out_filename:
         out_filename = os.path.splitext(in_filename)[0]
@@ -115,28 +106,35 @@ def extract_archive(name):
             zipfile.extract(name, out_path)
         zipfile.close()
 
+def remove_keys():
+    os.system("rm {}/settings.py && rm *.a && rm *.zip".format(path))
+
+def upload(filename, key):
+    err = os.system("pip freeze>requerements.txt")
+    if not err:
+        venv_path = os.environ['VIRTUAL_ENV'].split('/')[-1]
+        os.system("zip -5r . {}.zip -D {}".format(filename, venv_path))
+        encrypt_file(key, file_name, file_name+'.e')
+        upload_file(file_name+'.e')
+    else:
+        print "fail run command pip"
 
 def start():
+    file_name = ''
     if len(sys.argv)>1 and sys.argv[1] in arguments:
         command = sys.argv[1]
         if command in 'auth':   
             auth()
         elif command in 'upload':
-            key = sys.argv[2]
-            abspath = os.getcwd().split('/')[-1].lower()
-            file_name = '{}.zip'.format(abspath)
-            err = os.system("pip freeze>requerements.txt")
-            if not err:
-                get_archive(file_name, '.')
-                encrypt_file(key, file_name, file_name+'.e')
-                upload_file(file_name+'.e')
-            else:
-                print "fail run command pip"
+            upload(sys.argv[2], sys.argv[3])
         elif command in 'download':
-            key = sys.argv[2]
-            file_name = sys.argv[3]
+            file_name = sys.argv[2]
+            key = sys.argv[3]
             crypt_file = '{}.e'.format(file_name)
             download_file(crypt_file)
             decrypt_file(key, crypt_file, file_name)
             extract_archive(file_name)
             os.system("pip install -r requerements.txt && rm {} {}".format(file_name, crypt_file))
+
+if __name__ == '__main__':
+    start()
