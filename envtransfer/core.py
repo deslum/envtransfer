@@ -16,14 +16,14 @@ def save_config():
     with open('settings.py','w') as f:
         f.write('config={}'.format(str(config)))
 
-@function_exception
+
 def get(url):
     header = headers={"Authorization": "OAuth {}".format(config['TOKEN'])}
     request = Request(url, headers = header)
     response = urlopen(request).read()
     return response
 
-@function_exception
+
 def auth():
     request = Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={}&state=EnvTransfer'.format(config['ID'])) 
     url = urlopen(request).geturl()
@@ -38,7 +38,7 @@ def auth():
         if config['TOKEN']:
             save_config()
 
-@function_exception
+
 def upload_file(name):
     request = 'https://cloud-api.yandex.net/v1/disk/resources/upload?path={}&overwrite=true&fields=href'.format(name)
     string = get(request)
@@ -51,7 +51,7 @@ def upload_file(name):
     request.get_method = lambda: 'PUT'
     opener.open(request)
 
-@function_exception
+
 def download_file(name):
     request = 'https://cloud-api.yandex.net/v1/disk/resources/download?path={}&fields=href'.format(name)
     string = get(request)
