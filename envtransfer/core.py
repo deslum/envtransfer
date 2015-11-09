@@ -120,7 +120,6 @@ def upload(filename, key):
         print "fail run command pip"
 
 def start():
-    file_name = ''
     if len(sys.argv)>1 and sys.argv[1] in arguments:
         command = sys.argv[1]
         if command in 'auth':   
@@ -135,6 +134,3 @@ def start():
             decrypt_file(key, crypt_file, file_name)
             extract_archive(file_name)
             os.system("pip install -r requerements.txt && rm {} {}".format(file_name, crypt_file))
-
-if __name__ == '__main__':
-    start()
