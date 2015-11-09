@@ -12,7 +12,7 @@ from help import show
 
 arguments = {'auth', 'upload', 'download'}
 import envtransfer
-path = envtransfer.__path__
+path = envtransfer.__path__[0]
 
 def save_config():
     with open('{}/settings.py'.format(path),'w') as f:
