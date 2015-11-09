@@ -11,9 +11,11 @@ from help import show
 
 
 arguments = {'auth', 'upload', 'download'}
+import envtransfer
+path = envtransfer.__path__
 
 def save_config():
-    with open('settings.py','w') as f:
+    with open('{}/settings.py'.format(path),'w') as f:
         f.write('config={}'.format(str(config)))
 
 
