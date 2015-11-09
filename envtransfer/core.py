@@ -16,14 +16,14 @@ def save_config():
     with open('settings.py','w') as f:
         f.write('config={}'.format(str(config)))
 
-
+@function_exception
 def get(url):
     header = headers={"Authorization": "OAuth {}".format(config['TOKEN'])}
     request = Request(url, headers = header)
     response = urlopen(request).read()
     return response
 
-
+@function_exception
 def auth():
     request = Request('https://oauth.yandex.ru/authorize?response_type=code&client_id={}&state=EnvTransfer'.format(config['ID'])) 
     url = urlopen(request).geturl()
@@ -38,7 +38,7 @@ def auth():
         if config['TOKEN']:
             save_config()
 
-
+@function_exception
 def upload_file(name):
     request = 'https://cloud-api.yandex.net/v1/disk/resources/upload?path={}&overwrite=true&fields=href'.format(name)
     string = get(request)
@@ -51,7 +51,7 @@ def upload_file(name):
     request.get_method = lambda: 'PUT'
     opener.open(request)
 
-
+@function_exception
 def download_file(name):
     request = 'https://cloud-api.yandex.net/v1/disk/resources/download?path={}&fields=href'.format(name)
     string = get(request)
@@ -115,26 +115,31 @@ def extract_archive(name):
 
 
 def start():
-    if len(sys.argv)>1 and sys.argv[1] in arguments:
-        command = sys.argv[1]
-        if command in 'auth':   
-            auth()
-        elif command in 'upload':
-            key = sys.argv[2]
-            abspath = os.getcwd().split('/')[-1].lower()
-            file_name = '{}.zip'.format(abspath)
-            err = os.system("pip freeze>requerements.txt")
-            if not err:
-                get_archive(file_name, '.')
-                encrypt_file(key, file_name, file_name+'.e')
-                upload_file(file_name+'.e')
-            else:
-                print "fail run command pip"
-        elif command in 'download':
-            file_name = sys.argv[2]
-            key = sys.argv[3]
-            crypt_file = '{}.e'.format(file_name)
-            download_file(crypt_file)
-            decrypt_file(key, crypt_file, file_name)
-            extract_archive(file_name)
-            os.system("pip install -r requerements.txt && rm {} {}".format(file_name, crypt_file))
+    try:
+        if len(sys.argv)>1 and sys.argv[1] in arguments:
+            command = sys.argv[1]
+            if command in 'auth':   
+                auth()
+            elif command in 'upload':
+                key = sys.argv[2]
+                abspath = os.getcwd().split('/')[-1].lower()
+                file_name = '{}.zip'.format(abspath)
+                err = os.system("pip freeze>requerements.txt")
+                if not err:
+                    get_archive(file_name, '.')
+                    encrypt_file(key, file_name, file_name+'.e')
+                    upload_file(file_name+'.e')
+                else:
+                    print "fail run command pip"
+            elif command in 'download':
+                key = sys.argv[2]
+                file_name = sys.argv[3]
+                crypt_file = '{}.e'.format(file_name)
+                download_file(crypt_file)
+                decrypt_file(key, crypt_file, file_name)
+                extract_archive(file_name)
+                os.system("pip install -r requerements.txt && rm {} {}".format(file_name, crypt_file))
+        else:
+            raise 
+    except:
+        show()
