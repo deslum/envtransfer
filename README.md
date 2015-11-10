@@ -11,7 +11,7 @@
 
     If Pip and virtual environments are not installed
     
-        a) wget [https://bootstrap.pypa.io/get-pip.py](https://bootstrap.pypa.io/get-pip.py)
+        a) wget https://bootstrap.pypa.io/get-pip.py
         b) python get-pip.py
         c) pip install virtualenv
         
