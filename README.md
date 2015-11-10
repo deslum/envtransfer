@@ -9,6 +9,12 @@
 ``` 
 1. Create a Python virtual environment and activate it
 
+    If Pip and virtual environments are not installed
+    
+        a) wget [https://bootstrap.pypa.io/get-pip.py](https://bootstrap.pypa.io/get-pip.py)
+        b) python get-pip.py
+        c) pip install virtualenv
+        
     $ virtualenv venv
     $ source venv/bin/activate
 
