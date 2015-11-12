@@ -42,3 +42,7 @@ $ envtransfer upload
 ``` 
 $ envtransfer download
 ``` 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/deslum/envtransfer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
