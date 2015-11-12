@@ -2,6 +2,7 @@
 ###EnvTransfer - transfer your environment between computers using Yandex disk.
 
 [![Build Status](https://travis-ci.org/deslum/envtransfer.svg)](https://travis-ci.org/deslum/envtransfer)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/deslum/envtransfer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
 ##Installation
@@ -43,6 +44,4 @@ $ envtransfer upload
 $ envtransfer download
 ``` 
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/deslum/envtransfer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
